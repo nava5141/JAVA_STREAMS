@@ -1,0 +1,134 @@
+import java.util.*;
+import java.util.stream.*;
+public class Main
+{
+	public static void main(String[] args) {
+
+	    //1. sum of all elements in a  list 
+
+	    List<Integer> list = Arrays.asList(1,3,5,2,4,6);
+	    Integer sum = list
+	                   .stream()
+	                   .mapToInt(Integer::intValue)
+	                   .sum();
+	     //  System.out. println(sum);  
+          
+	    //2.find the product of elements in a list
+
+	    Integer productOfList = list
+	                            .stream()
+	                            .reduce(1,(a,b)->(a*b));
+	     //  System.out.println(productOfList);
+
+	   //3.find average of all elements in a list
+
+	   Double averageOfAllElements = list
+	                                    .stream()
+	                                    .mapToInt(Integer::intValue)
+	                                    .average()
+	                                   .orElse(0.0);
+	                                //   System.out.println(averageOfAllElements);
+
+	  //4.find the maximum element in a list 
+
+	  int  maxElmt = list
+	                    .stream()
+	                    .max(Integer::compare)// as same as min
+	                    .get();
+	                  //  System.out.println(maxElmt);
+
+	   //5.count the number of elements in a list 
+
+	   long count = list
+	                .stream()
+	                .count();
+	               // System.out.println(count);
+
+	  //6.check if a list contains a specific element
+	  
+	  Boolean result = list
+	                    .stream()
+	                    .anyMatch(n-> n==5);
+	              //      System.out.println(result);
+
+	  //7.Filter out even numbers from a list
+
+	  List<Integer>evenNumbers = list
+	                            .stream()
+	                            .filter(i->i%2==0)//for Odd numbers i%2!=0
+	                           
+	                            .collect(Collectors.toList());
+	                           
+	            //   System.out.println(evenNumbers);
+
+	  // 8.convert a list of Strings into UpperCase
+
+	  List<String> word =Arrays.asList("nava","narendar","nk");
+	  List<String> upperCasedWord = word
+	                            .stream()
+	                            .map(String::toUpperCase)
+	                            .collect(Collectors.toList());
+	                         //   System.out.println(upperCasedWord);
+
+	   //9.covert a list into their squares
+
+	   List<Integer>list1 = Arrays.asList(1,2,3,4,5,2,5);
+	   List<Integer> squares= list1 
+	                            .stream()
+	                            .map(i->i*i)
+	                            .collect(Collectors.toList());
+	           //    System.out.println(squares);
+
+	  //10.find the first element in a list 
+
+	  int firstElmt = list1
+	                    .stream()
+	                    .findFirst()
+	                    .get();
+	                //    System.out.println(firstElmt);
+
+	  //11.find the last element in a list
+
+	   int lastElmt = list1
+	                    .stream()
+	                    .sorted(Collections.reverseOrder())
+	                    .findFirst()
+	                    .get();
+	                  //  System.out.println(lastElmt);
+
+
+	 //12.check if all elements in a list satisfy a condition
+
+	 boolean allEven = list1
+	                    .stream()
+	                    .allMatch(n->n%2==0);
+	                   // System.out.println(allEven);
+
+	 //13.remove duplicates elements from a list
+
+	 List<Integer>duplicates = list1
+	                            .stream()
+	                            .distinct()
+	                            .collect(Collectors.toList());
+	            //   System.out.println(duplicates);
+
+	//14.sort a list in Ascending order 
+
+	List<Integer> ascendingOrder = list1
+	                                .stream()
+	                                .sorted()
+	                                .collect(Collectors.toList());
+	             //  System.out.println(ascendingOrder);
+
+	  //15.sort a list in descending order 
+
+	  List<Integer> descending = list1
+	                                .stream()
+	                                .sorted(Collections.reverseOrder())
+	                                .collect(Collectors.toList());
+	              // System.out.println(descending);
+	               
+	               
+	               
+	}
+}
