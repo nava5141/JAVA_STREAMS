@@ -1,0 +1,40 @@
+import java.util.*;
+import java.util.stream.*;
+public class Main
+{
+	public static void main(String[] args) {
+
+	    //1.Sort a list in a Alphabetic Order
+
+	    List <String> nonAlphaberticOrder = Arrays.asList("banana","apple","cat");
+	    List <String> alphabeticOder = nonAlphaberticOrder
+	                                    .stream()
+	                                    .sorted()
+	                                    .collect(Collectors.toList());
+	                                    
+	                                //    System.out.println(alphabeticOder);
+		
+		//2.Sort a list of strings by their length
+
+		List <String>result = nonAlphaberticOrder
+		                                .stream()
+		                                .sorted(Comparator.comparingInt(String::length))
+		                                .collect(Collectors.toList());
+		                             //   System.out.println(result);
+
+          	//3.find the sum of digits of a number 
+   
+		int num = 123;
+		int sumOfNum = String.valueOf(num)
+		                .chars()
+		                .map(c-> c-'0')
+		                .sum();
+		         //       System.out.println(sumOfNum);
+
+	//4.find the factorial of number
+
+	int  factNum =5;
+	long fact = IntStream.rangeClosed(1, factNum)
+                     .asLongStream()
+                     .reduce(1, (a, b) -> a * b);
+                     System.out.println(fact);
