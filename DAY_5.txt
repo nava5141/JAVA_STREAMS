@@ -1,0 +1,104 @@
+import java.util.*;
+import java.util.stream.*;
+public class Main
+{
+	public static void main(String[] args) {
+
+//1.sort list of strings by their length
+
+List <String>list = Arrays.asList("adad","abs","abcs","eded","AS");
+List<String> sortedListByLength =list  
+                                    .stream()
+                                    .sorted(Comparator.comparingInt(String::length).reversed())
+                                    .collect(Collectors.toList());
+                                 //   System.out.println(sortedListByLength);
+
+//2.find the sum of digits of a Number
+
+int number = 1234;
+int digitsSum = String.valueOf(number)
+                    .chars()
+                    .map(Character::getNumericValue)
+                    .sum();
+                   // System.out.println(digitsSum);
+
+//3.Find the factorial of a number 
+
+int factorial = IntStream.rangeClosed(1,5)
+                .reduce(1,(a,b)-> a*b);
+              //  System.out.println(factorial);
+
+//4.find the second largest element in a list 
+
+List <Integer> largest = Arrays.asList(1,2,3,4,5,6,7,6,5);
+int secondLargestElmt = largest
+                        .stream()
+                        .distinct()
+                        .sorted(Collections.reverseOrder())
+                        .skip(1)
+                        .findFirst()
+                        .get();
+                      //  System.out.println(secondLargestElmt);
+
+//5.find the largest string from the List
+
+List <String>list1 = Arrays.asList("adad","abs","abcs","eded","AS");
+String largestString = list1
+                        .stream()
+                        .sorted(Comparator.comparingInt(String::length).reversed())
+                        .findFirst()
+                        .get();
+                      //  System.out.println(largestString);
+
+//6. find the shotest string from a list 
+
+List <String>list2 = Arrays.asList("adad","abs","abcs","eded","AS");
+String smallString = list2
+                        .stream()
+                        .min(Comparator.comparingInt(String::length))
+                        .orElse("");
+                       // System.out.println(smallString);
+
+//7.Groups strings by their length
+
+List <String>list3 = Arrays.asList("adad","abs","abcs","eded","AS");
+Map<Integer,List<String>> groupingStrings = list3
+                                            .stream()
+                                            .collect(Collectors.groupingBy(String::length));
+                                         //   System.out.println(groupingStrings);
+
+//8.Partition a list of integers into even and odd numbers
+
+List<Integer>listOfIntegers = Arrays.asList(1,2,3,4,5,6,7);
+Map<Boolean,List<Integer>>oddEvenMap = listOfIntegers
+                                        .stream()
+                                        .collect(Collectors.partitioningBy(a -> a%2==0));
+       List<Integer> even = oddEvenMap.get(true);
+       List<Integer>odd = oddEvenMap.get(false);
+     //  System.out.println(even);
+       //System.out.println(odd);
+
+//9.Merge two and more  lists 
+
+List<Integer> list5 = Arrays.asList(1,2,3,4);
+List<Integer> list6 = Arrays.asList(5,6,7,8);
+List<Integer> list7 = Arrays.asList(9,10,11,12);
+
+List<Integer> flatMapList = Stream.of(list5,list6,list7)
+                                    .flatMap(List::stream)
+                                    .collect(Collectors.toList());
+                                 //   System.out.println(flatMapList);
+
+    //for two lists
+
+    List<Integer> mergeList = Stream.concat(list5.stream(),list6.stream())
+                                .collect(Collectors.toList());
+                                System.out.println(mergeList);
+
+
+
+
+
+		
+	}
+}
