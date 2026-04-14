@@ -1,0 +1,17 @@
+import java.util.*;
+import java.util.stream.*;
+public class Main
+{
+	public static void main(String[] args) {
+
+//1. Find the Intersection of Two Lists	
+    
+List<Integer> list1 = Arrays.asList(1,2,3,4,5,6);
+List<Integer> list2 = Arrays.asList(4,5,6,7,8,9);
+Set<Integer> interSet = new HashSet<Integer>(list1);
+List<Integer> interSectionOfList = list2
+                                    .stream()
+                                    .distinct()
+                                    .filter(e->!interSet.add(e))
+                                    .collect(Collectors.toList());
+                                    System.out.println(interSectionOfList);
