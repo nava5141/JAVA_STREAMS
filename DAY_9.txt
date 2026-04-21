@@ -1,0 +1,88 @@
+import java.util.*;
+import java.util.stream.*;
+
+public class Main
+{
+
+	public static void main(String[] args) {
+
+		//1.Remove All Consonants from a String
+
+		String words = "java is a object oriented programming language";
+		String stringWtihoutConsonants = words.chars()
+		                                 .filter(c-> "aeiou".contains(String.valueOf((char)c)))
+		                                 .mapToObj(c-> String.valueOf((char)c))
+		                                 .collect(Collectors.joining());
+		//  System.out.println(stringWtihoutConsonants);
+
+		//2.Remove All Digits from a String
+
+		String input = "java1java2java3java4";
+		String stringWithoutDigits = input.chars()
+		                             .filter(c-> !Character.isDigit(c))
+		                             .mapToObj(c-> String.valueOf((char)c))
+		                             .collect(Collectors.joining());
+		//System.out.println(stringWithoutDigits);
+
+		//3.Remove All Special Characters from a String
+
+		String input1 = "@java#java$java%java%java^";
+		String stringWithoutSpecialCharacters = input1.chars()
+		                                        .filter(s -> Character.isLetterOrDigit(s) || Character.isWhitespace(s))
+		                                        .mapToObj(s -> String.valueOf((char)s))
+		                                        .collect(Collectors.joining());
+		//System.out.println(stringWithoutSpecialCharacters);
+
+		//4.Extract All Digits from a String and Sum Them
+
+		String input2 = "java1java2java3java4";
+		int sumOfAllDigits = input2.chars()
+		                     .filter(Character::isDigit)
+		                     .map(c-> c - '0')
+		                     .sum();
+
+		//System.out.println(sumOfAllDigits);
+
+		//5.Extract All Words from a String and Count Their Occurrences
+
+		String inputs = "java is a object oriented language , java has good object";
+		Map<String,Long> countOfEachWordInString = Arrays.stream(inputs.split("\\s+"))
+		        .collect(Collectors.groupingBy(a-> a,Collectors.counting()));
+
+		//System.out.println(countOfEachWordInString);
+
+		//6.Extract All Unique Words from a String
+
+		List<String> extractAllUniqueWords = Arrays.stream(inputs.split("\\s+"))
+		                                     .collect(Collectors.groupingBy(a-> a,Collectors.counting()))
+		                                     .entrySet()
+		                                     .stream()
+		                                     .filter(e -> e.getValue()==1)
+		                                     .map(Map.Entry::getKey)
+		                                     .toList();
+		//   System.out.println(extractAllUniqueWords);
+
+		//7.Extract All Palindromic Words from a String
+
+		String word1 = "madam racecar banana sas";
+		List<String> stringWithPalindromes = Arrays.stream(word1.split("\\s+"))
+		                                     .filter(w -> w.equals(new StringBuilder(w).reverse().toString()))
+		                                     .collect(Collectors.toList());
+		//System.out.println(stringWithPalindromes);
+
+		//8.Extract All Words Starting with a Specific Letter
+
+		List<String> extractWordWithSpecificLetter = Arrays.stream(inputs.split("\\s+"))
+		        .filter(s -> s.startsWith("a"))
+		        .collect(Collectors.toList());
+
+		//	System.out.println(extractWordWithSpecificLetter);
+
+
+		//9.Extract All Words Ending with a Specific Letter
+
+        List<String> endswithspecificletter = Arrays.stream(inputs.split("\\s+"))
+		        .filter(s -> s.endsWith("a"))
+		       
+		        .collect(Collectors.toList());
+        System.out.println(endswithspecificletter);
