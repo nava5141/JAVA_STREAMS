@@ -1,0 +1,132 @@
+import java.util.*;
+import java.util.stream.*;
+public class Main
+
+{
+	public static void main(String[] args) {
+
+	//1.Given a list of integers, write a program to find and print the maximum element using Java Stream API
+
+     List<Integer> numbers = Arrays.asList(1,3,4,56,5);
+     int max = numbers
+                .stream()
+                .sorted(Comparator.reverseOrder())
+                
+                .findFirst()
+                .orElse(0);
+               // System.out.println(max);
+	int man = numbers
+	          .stream()
+	          .mapToInt(Integer::intValue)
+	          .max()
+	          .orElseThrow();
+	        //  System.out.println(man);
+
+	//2. Given a list of strings, write a program to count the number of strings containing a specific character ‘a’ using Java Stream API.
+
+	List<String> word =  Arrays.asList("amdam","nava","vblue","hello");
+	List<String> specificCharInList = word
+	                                  .stream()
+	                                  .filter(s-> s.contains("a"))
+	                                  .collect(Collectors.toList());
+	                                //  System.out.println(specificCharInList);
+
+	//3.Write a program to convert a list of strings to uppercase using Java Stream API.
+
+	List<String> upperCase = word
+
+	                        .stream()
+	                         .map(s-> s.toUpperCase())
+	                         .collect(Collectors.toList());
+	                      //   System.out.println(upperCase);
+
+	//4.Given a list of integers, write a program to calculate the average of all the numbers using Java Stream API.
+
+	double averageOfNumbers = numbers
+	                        .stream()
+	                        .mapToInt(Integer::intValue)
+	                        .average()
+	                        .orElse(0.0);
+	                       // System.out.println(averageOfNumbers);
+
+	//5. Write a program to sort a list of strings in alphabetical order using Java Stream API
+
+	List<String> alphabeticalOrder = word
+	                                .stream()
+	                                .sorted()
+	                                .collect(Collectors.toList());
+	                              //  System.out.println(alphabeticalOrder);
+
+	//6.Given a list of strings, write a program to concatenate all the strings using Java Stream API
+
+	String concatenateStrings = word
+	                            .stream()
+	                            .reduce("",(a,b)-> a+b);
+	                           // System.out.println(concatenateStrings);
+
+	//7.Write a program to find the longest string in a list of strings using Java Stream API.
+
+	String longestString = word
+	                        .stream()
+	                        .sorted(Comparator.reverseOrder())
+	                        .findFirst()
+	                        .orElse(null);
+	                       // System.out.println(longestString);
+
+	//8. Given a list of integers, write a program to find and print the second largest number using Java Stream API.
+
+	List<Integer> list = Arrays.asList(1,2,4,5,56,6,7,8,9);
+	int secondLargestElmnt = list
+	                        .stream()
+	                        .sorted(Comparator.reverseOrder())
+	                        .skip(1)
+	                        .findFirst()
+	                        .orElse(0);
+	                        //System.out.println(secondLargestElmnt);
+
+	 //9.Write a program to remove all the duplicate elements from a list using Java Stream API.
+
+	 List<Integer> list1 = Arrays.asList(1,1,2,2,2,3,3,3,3,4,4,5);
+	 List<Integer> list2 =  list1
+	                        .stream()
+	                        .distinct()
+	                        .collect(Collectors.toList());
+	                        //System.out.println(list2);
+
+	//10. Write a program to convert a list of integers to a list of their squares using Java Stream API.
+
+	List<Integer> list3 = Arrays.asList(1,2,3,4);
+	List<Integer> list4 = list3
+	                       .stream()
+	                       .map(s-> s*s)
+	                       .collect(Collectors.toList());
+	                      // System.out.println(list4);
+
+	//11.Given a list of strings, write a program to find and print the strings starting with a specific prefix ‘a’ using Java Stream API.
+
+	String prefix = "a";
+	List <String> specificPrefix = word
+	                                .stream()
+	                                .filter(s-> s.startsWith(prefix))
+	                                .collect(Collectors.toList());
+	                             //   System.out.println(specificPrefix);
+
+	//12.Write a program to find the product of all elements in a list of integers using Java Stream API
+
+                	int  produtOfList = list3
+	                                .stream()
+	                                .reduce(1,(a,b)-> a*b);
+	                             //   System.out.println(produtOfList);
+	                               
+	//13.Given a list of integers, write a program to find and print the prime numbers using Java Stream API.
+
+	List<Integer> listOfNumbers = Arrays.asList(3,4,5,6,9,11,13,17,23);
+	List<Integer> primeNumbers = listOfNumbers
+	                                .stream()
+	                                .filter(n-> n>1 && IntStream.rangeClosed(2,(int)Math.sqrt(n)).noneMatch(i-> n%i ==0))
+	                                .collect(Collectors.toList());
+	                                System.out.println(primeNumbers);
+	
+	
+	}
+}
