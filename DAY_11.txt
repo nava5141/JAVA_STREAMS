@@ -1,0 +1,7 @@
+//1.list of string contains a specific string 
+
+    List<String> lists = Arrays.asList("NANA","Amma","hello","World");
+    Boolean specificString = lists 
+                            .stream()
+                            .anyMatch(s-> s.equals("Amma"));
+                            System.out.println(specificString);
