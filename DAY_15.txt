@@ -1,0 +1,91 @@
+import java.util.*;
+import java.util.stream.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+	 
+    //1. Filter Even Numbers 
+
+    List<Integer> list = Arrays.asList(1,2,3,4,5,6,7);
+    List<Integer> filteredList = list
+                                .stream()
+                                .filter(s -> s%2 ==0)
+                                .collect(Collectors.toList());
+                               // System.out.println(filteredList);
+    //2. Find Maximum 
+
+    int max = list
+              .stream()
+              .max(Integer::compare)
+              .orElse(0);
+            //  System.out.println(max);
+
+    //3. Sum of Elements 
+
+    int sum = list
+              .stream()
+              .mapToInt(Integer::intValue)
+              .sum();
+              //System.out.println(sum);
+             
+    //4. List of Names to Uppercase 
+
+    List<String> list1 = Arrays.asList("nava","kumar", "hello","world");
+    List<String> toUpperCased = list1
+                                .stream()
+                                .map(String::toUpperCase)
+                                .collect(Collectors.toList());
+                               // System.out.println(toUpperCased);
+
+    //5.. Sort List
+
+    List<Integer> sortedList = list 
+                                .stream()
+                                .sorted()
+                                .collect(Collectors.toList());
+                                
+    //6. Count Elements 
+
+    long counted = list
+                    .stream()
+                    .count();
+                    
+                    
+    //7. Get Distinct Elements 
+
+    Set<Integer> set = new HashSet<>();
+    List<Integer> newList = list
+                            .stream()
+                            .filter(s-> !set.add(s))
+                            .collect(Collectors.toList());
+
+    //8. Reduce to Sum 
+
+    int sumOfList = list
+                    .stream()
+                    .reduce(0,Integer::sum);
+
+    
+    //9. Find Any 
+
+    int anyNum = list
+                    .stream()
+                    .findAny()
+                    .orElse(0);
+                   // System.out.println(anyNum);
+
+    //10. List First Names 
+
+    List<String> names = Arrays.asList("Navakumar Kukkaduvva","Narender Mekala","Rahul Choppari");
+    List<String> firstNames = names
+                            .stream()
+                            .map(n->n.split(" ")[0])
+                            .collect(Collectors.toList());
+                            System.out.println(firstNames);
+    
+    
+    
+
+	}
+}
